@@ -255,3 +255,8 @@ function searchAction(event) {
     resultBox.innerHTML = "<div>No results found</div>";
   }
 }
+
+
+fetch(`${API_URL}/api/products`)
+  .then(res => res.json())
+  .then(data => console.log(data));
