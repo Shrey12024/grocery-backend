@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="p-5">
+
+  <div class="container">
+    <h2>Search Results</h2>
+    <div id="results" class="row mt-4"></div>
+  </div>
+
+  <script>
+    const products = [
+      { name: "Tomato", image: "https://via.placeholder.com/150?text=Tomato" },
+      { name: "Potato", image: "https://via.placeholder.com/150?text=Potato" },
+      { name: "Carrot", image: "https://via.placeholder.com/150?text=Carrot" },
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("query")?.toLowerCase();
+    const resultContainer = document.getElementById("results");
+
+    const matches = products.filter(p => p.name.toLowerCase().includes(query));
+
+    if (matches.length > 0) {
+      resultContainer.innerHTML = matches.map(p => `
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="${p.image}" class="card-img-top" alt="${p.name}">
+            <div class="card-body">
+              <h5 class="card-title">${p.name}</h5>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      resultContainer.innerHTML = `<p class="text-danger">No products found for "<strong>${query}</strong>"</p>`;
+    }
+  </script>
+
+</body>
+</html>

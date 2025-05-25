@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Grocery House</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="kk.css">
+  <link rel="icon" type="image/png" href="images/1.jpg">
+
+  <!-- test -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- test -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+      background: #f9f9f9;
+    }
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      height: 100%;
+    }
+    .product-image {
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .product-title {
+      font-weight: 600;
+    }
+    .product-price {
+      color: #007bff;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .btn-cart {
+      background-color: #007bff;
+      color: white;
+      margin-right: 5px;
+    }
+    .btn-buy {
+      background-color: black;
+      color: white;
+    }
+    .wishlist-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: red;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      cursor: pointer;
+    }
+    @media (min-width: 992px) {
+    .col-lg-2 {
+        flex: 0 0 auto;
+        width: 30.66666667%;
+        padding: 30px 20px;
+    }
+  }
+  .row {
+    display: flex !important;
+    justify-content: center;
+  }
+  .product-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Normal shadow */
+  margin-bottom: 20px;
+  height: 100%;
+  transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  transform: translateY(-5px); /* Optional: thoda upar uthana */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-img-top{
+  height: 300px;
+}
+  </style>
+
+</head>
+<body>
+  <div class="split-left" id="leftPanel"></div>
+  <div class="split-right" id="rightPanel"></div>
+  <!-- loader -->
+  <div class="loader-container" id="loader">
+    <div class="percent-text" id="percent">0%</div>
+  </div>
+  <div id="mainContent" style="display: none;">
+   
+    <!-- header -->
+
+  <div class="top-bar d-flex justify-content-between align-items-center">
+    <div>
+      <i class="bi bi-telephone"></i> +91 88891 65638
+      <i class="bi bi-envelope ms-3"></i> veditasahu94@gmail.com
+    </div>
+    <div>
+      Your reliable destination for authentic timepieces
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="logo">
+      <img src="images/1.jpg" alt="Logo">
+    </div>
+    <div class="nav-menu">
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Collections</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Rolex</a></li>
+          <li><a class="dropdown-item" href="#">Audemars Piguet</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicing and Repairs</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="about.html">About us</a></li>
+          <li><a class="dropdown-item" href="#">Polishing</a></li>
+        </ul>
+      </div>
+      <a class="nav-link" href="#">Trade/Sell</a>
+      <a class="nav-link" href="about.html">Abouts us</a>
+      <a class="nav-link" href="#">Contact Us</a>
+    </div>
+    <div class="icon-bar">
+      <div class="position-relative">
+        <i class="bi bi-search" onclick="toggleSearch()"></i>
+        <div class="search-bar" id="searchBar">
+          <input type="text" placeholder="Search..." onkeyup="searchAction(event)">
+        </div>
+      </div>
+      <i class="bi bi-person"></i>
+      <div class="position-relative">
+        <i class="bi bi-heart" onclick="increment('wishlist')"></i>
+        <span id="wishlistCount">0</span>
+      </div>
+      <div class="position-relative">
+        <i class="bi bi-cart" onclick="increment('cart')"></i>
+        <span id="cartCount">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-header">
+ 
+    <i class="bi bi-list" id="openDrawer"></i>
+    <div class="logo">
+      <img src="images/1.jpg" alt="Logo">
+    </div>
+   
+    <div class="icon-bar">
+      <!-- <i class="bi bi-search" onclick="toggleSearch()"></i> -->
+        <!-- इसको mobile-header के अंदर icon-bar में जोड़े -->
+<div class="position-relative">
+  <i class="bi bi-search" onclick="toggleMobileSearch()"></i>
+  <div class="search-bar" id="mobileSearchBar">
+    <input type="text" placeholder="Search..." onkeyup="searchAction(event)">
+  </div>
+</div>
+<!-- dfgdgd -->
+ <div id="searchResults" style="background:#fff; color:#000; padding:10px;"></div>
+
+      <div class="position-relative">
+           
+        <i class="bi bi-cart" onclick="increment('cart')"></i>
+        <span id="cartCountMobile">0</span>
+      </div>
+      <div class="position-relative">
+        <i class="bi bi-heart" onclick="increment('wishlist')"></i>
+        <span id="wishlistCountMobile">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <span>Your reliable destination for authentic timepieces</span>
+      <i class="bi bi-x" id="closeDrawer"></i>
+    </div>
+    <div class="tabs">
+      <button class="active" onclick="showTab('menu')">MENU</button>
+      <button onclick="showTab('categories')">CATEGORIES</button>
+    </div>
+    <div class="drawer-content" id="menuTab">
+      <div>
+        <div onclick="toggleSubmenu(this)">Collections <span class="float-end">+</span></div>
+        <div class="submenu">
+          <div>Rolex</div>
+          <div>Audemars Piguet</div>
+        </div>
+      </div>
+      <div>
+        <div onclick="toggleSubmenu(this)">Shipping Information <span class="float-end">+</span></div>
+        <div class="submenu">
+          <div>Local</div>
+          <div>International</div>
+        </div>
+      </div>
+      <div>Servicing and Repairs</div>
+      <div>Trade/Sell</div>
+      <div>Contact Us</div>
+    </div>
+    <div class="drawer-content d-none" id="categoriesTab">
+      <p>Category list here...</p>
+    </div>
+  </div>
+<!-- header completed -->
+
+<!-- sliderr start -->
+ <div class="slider-wrapper">
+  <div class="slider" id="slider">
+    <div class="slide">
+      <img src="images/3.jpg" alt="Slide 1" />
+      <div class="slide-content">
+        <h2>Fresh Fruits Daily</h2>
+        <p>Organic and farm-fresh, straight to your doorstep</p>
+        <a href="#" class="btn">View More</a>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="images/5.jpg" alt="Slide 2" />
+      <div class="slide-content">
+        <h2>Quality Vegetables</h2>
+        <p>Handpicked for your healthy lifestyle.</p>
+        <a href="#" class="btn">Shop Now</a>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="images/6.jpg" alt="Slide 3" />
+      <div class="slide-content">
+        <h2>Daily Essentials</h2>
+        <p>Everything you need, all in one place.</p>
+        <a href="#" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="nav-btn nav-prev" id="prevBtn">&#10094;</button>
+  <button class="nav-btn nav-next" id="nextBtn">&#10095;</button>
+</div>
+
+
+<!-- slider completed -->
+<!-- catogery -->
+ <div class="container py-5">
+  <div class="section-title">
+    <h2>PRODUCT <span>CATEGORIES</span></h2>
+    <p>Explore our comprehensive range of grocery products and essentials</p>
+  </div>
+
+  <div class="category-slider">
+    <div class="category-card">
+      <img src="images/8.jpg" alt="Fruits">
+      <h5>Fruits</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/9.jpg" alt="Vegetables">
+      <h5>Vegetables</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/10.jpg" alt="Dairy Products">
+      <h5>Dairy Products</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/10.jpg.jpg" alt="Beverages">
+      <h5>Beverages</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/11.jpg" alt="Snacks">
+      <h5>Snacks</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/12.jpg" alt="Frozen Foods">
+      <h5>Frozen Foods</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/3782.jpg" alt="Bakery">
+      <h5>Bakery</h5>
+    </div>
+    <div class="category-card">
+      <img src="images/2075429.jpg" alt="Household Essentials">
+      <h5>Household Essentials</h5>
+    </div>
+
+    <!-- <div class="category-card">
+      <img src="https://i.imgur.com/gRUS1Jv.png" alt="Differential Assemblies">
+      <h5>Differential Assemblies</h5>
+    </div>
+    <div class="category-card">
+      <img src="https://i.imgur.com/FykwfNg.png" alt="Engine Parts">
+      <h5>Engine Parts</h5>
+    </div>
+    <div class="category-card">
+      <img src="https://i.imgur.com/FwYQlqx.png" alt="Transmissions">
+      <h5>Transmissions</h5>
+    </div> -->
+  </div>
+</div>
+
+<!-- testimonial -->
+ <section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Client <span class="text-primary">Testimonials</span></h2>
+      <p class="text-muted">See what our happy customers are saying</p>
+    </div>
+
+    <div class="testimonial-scroll">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <img src="images/100.jpg" alt="Client 1" class="testimonial-img">
+        <h5 class="testimonial-name">Emily Johnson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Transformed my backyard. Super easy to install!</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <img src="images/101.jpg" alt="Client 2" class="testimonial-img">
+        <h5 class="testimonial-name">Michael Anderson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Charges well even on cloudy days. Works great.</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <img src="images/103.jpg" alt="Client 2" class="testimonial-img">
+        <h5 class="testimonial-name">Michael Anderson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Charges well even on cloudy days. Works great.</p>
+      </div>
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <img src="images/104.jpg" alt="Client 2" class="testimonial-img">
+        <h5 class="testimonial-name">Michael Anderson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Charges well even on cloudy days. Works great.</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <img src="images/105.jpg" alt="Client 2" class="testimonial-img">
+        <h5 class="testimonial-name">Michael Anderson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Charges well even on cloudy days. Works great.</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <img src="images/106.jpg" alt="Client 2" class="testimonial-img">
+        <h5 class="testimonial-name">Michael Anderson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Charges well even on cloudy days. Works great.</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <img src="images/118.jpg" alt="Client 2" class="testimonial-img">
+        <h5 class="testimonial-name">Michael Anderson</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Charges well even on cloudy days. Works great.</p>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <img src="images/121.jpg" alt="Client 3" class="testimonial-img">
+        <h5 class="testimonial-name">Sarah Mitchell</h5>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">Very cozy vibe on my patio. Friends love it!</p>
+      </div>
+
+      <!-- Add more testimonials as needed -->
+    </div>
+  </div>
+</section>
+ <!-- testinonial -->
+
+    
+<div class="container py-5">
+  <div class="row" id="product-container"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="buyModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="buyForm" onsubmit="event.preventDefault(); startPayment();">
+        <div class="modal-header">
+          <h5 class="modal-title">Fill Your Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="userName" class="form-control mb-2" placeholder="Your Name" required>
+          <input type="email" id="userEmail" class="form-control mb-2" placeholder="Your Email" required>
+          <input type="tel" id="userContact" class="form-control mb-2" placeholder="Your Phone" required>
+          <textarea id="userAddress" class="form-control mb-2" placeholder="Your Address" rows="2" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success w-100">Checkout</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const products = [
+  { title: "Fresh Apples", price: "299", img: "images/1.jpg" },
+  { title: "Whole Wheat Bread", price: "410", img: "images/2.jpg" },
+  { title: "Organic Bananas", price: "150", img: "images/3.jpg" },
+  { title: "Fresh Milk 1L", price: "60", img: "images/4.jpg" },
+  { title: "Basmati Rice 5kg", price: "650", img: "images/5.jpg" },
+  { title: "Brown Eggs (6pcs)", price: "90", img: "images/6.jpg" },
+  { title: "Tomatoes (1kg)", price: "70", img: "images/7.jpg" },
+  { title: "Onions (1kg)", price: "55", img: "images/8.jpg" },
+  { title: "Sunflower Oil 1L", price: "160", img: "images/9.jpg" },
+  { title: "Potatoes (2kg)", price: "80", img: "images/10.jpg" }
+];
+
+let selectedProduct = null;
+
+const container = document.getElementById("product-container");
+products.forEach((product, index) => {
+  const card = document.createElement("div");
+  card.className = "col-12 col-md-6 col-lg-3 mb-4";
+  card.innerHTML = `
+    <div class="card h-100">
+      <img src="${product.img}" class="card-img-top" alt="${product.title}">
+      <div class="card-body">
+        <h5 class="card-title">${product.title}</h5>
+        <p class="card-text">Price: ₹${product.price}</p>
+        <button class="btn btn-primary w-100" onclick="openForm(${index})">Quick Buy</button>
+      </div>
+    </div>
+  `;
+  container.appendChild(card);
+});
+
+function openForm(index) {
+  selectedProduct = products[index];
+  const modal = new bootstrap.Modal(document.getElementById('buyModal'));
+  modal.show();
+}
+
+function startPayment() {
+  const name = document.getElementById("userName").value;
+  const email = document.getElementById("userEmail").value;
+  const contact = document.getElementById("userContact").value;
+  const address = document.getElementById("userAddress").value;
+  const amount = parseInt(selectedProduct.price) * 100;
+
+  const options = {
+    key: "rzp_test_E4KAEijXgn4ric",
+    amount: amount,
+    currency: "INR",
+    name: "My Grocery Store",
+    description: selectedProduct.title,
+    image: selectedProduct.img,
+    handler: function (response) {
+      const billData = {
+        title: selectedProduct.title,
+        img: selectedProduct.img,
+        price: selectedProduct.price,
+        paymentId: response.razorpay_payment_id,
+        name, email, contact, address,
+        date: new Date().toLocaleString()
+      };
+      localStorage.setItem("billData", JSON.stringify(billData));
+      window.open("invoice.html", "_blank");
+    },
+    prefill: { name, email, contact },
+    theme: { color: "#28a745" }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+
+  const modal = bootstrap.Modal.getInstance(document.getElementById('buyModal'));
+  modal.hide();
+}
+</script>
+
+
+ <!-- end -->
+
+<!-- our services -->
+ <section class="san-section " id="service">
+      <div class="san-left ">
+        <h6 class="san-subheading"> — OUR SERVICES — </h6>
+        <h2 class="san-title">Services You Will Get By Joining Us.</h2>
+        <button class="san-button">See All Services</button>
+      </div>
+
+      <div class="san-right">
+        <div class="san-card san-highlight">
+          <div class="san-icon"><i class="fas fa-shield-heart"></i></div>
+          <h4 class="san-card-title">Competitive Pricing</h4>
+          <p class="san-desc">High-quality service that offers excellent value.</p>
+          <div class="san-read">Read More →</div>
+          <div class="san-number">1</div>
+        </div>
+        <div class="san-card ">
+          <div class="san-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+          <h4 class="san-card-title">Independent & Local</h4>
+          <p class="san-desc">A Perth-based company dedicated to serving local businesses.</p>
+          <div class="san-read">Read More →</div>
+          <div class="san-number">2</div>
+        </div>
+        <div class="san-card ">
+          <div class="san-icon"><i class="fas fa-house-user"></i></div>
+          <h4 class="san-card-title">Professional & Reliable Team</h4>
+          <p class="san-desc">Experienced cleaners committed to exceptional standards.</p>
+          <div class="san-read">Read More →</div>
+          <div class="san-number">3</div>
+        </div>
+        <div class="san-card ">
+          <div class="san-icon"><i class="fas fa-trophy"></i></div>
+          <h4 class="san-card-title">• Focus on Health & Productivity</h4>
+          <p class="san-desc">Creating cleaner, healthier, and more productive work environments.</p>
+          <div class="san-read">Read More →</div>
+          <div class="san-number">4</div>
+        </div>
+      </div>
+    </section>
+    <!-- about 2nd section -->
+    <section class="san2-about" id="about">
+      <div class="san2-image-container">
+        <img src="images/5.jpg" alt="Worker Cleaning" class="san2-main-image" />
+        <div class="san2-years-badge">
+
+          <h2>23</h2>
+          <p>Years Of Exprince</p>
+        </div>
+        <a href="https://www.youtube.com/embed/ScMzIvxBSi4" class="san2-play-button" target="_blank">
+          <i class="fas fa-play"></i>
+        </a>
+      </div>
+
+      <div class="san2-text-content">
+        <h6 class="san2-subtitle">ABOUT US</h6>
+        <h2 class="san2-heading">
+          Trusted By Worldwide Clients Since <span>2002.</span>
+        </h2>
+        <p class="san2-desc">
+          QPS Cleaning is a trusted Perth-based company offering professional and eco-friendly cleaning services.
+          They specialize in tailored solutions for offices, commercial spaces, healthcare facilities, and more.
+        </p>
+
+        <ul class="san2-services-list">
+          <li>
+            <img class="service-img" src="images/10.jpg">
+            <div>
+              <h4>100% Quality Services</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A omnis inventore quod maxime officiis.</p>
+            </div>
+          </li>
+          <li>
+            <img class="service-img" src="images/11.jpg">
+            <div>
+              <h4>Tailored Cleaning Solutions</h4>
+              <p>Customized plans to meet the specific needs of your office or commercial property.</p>
+            </div>
+          </li>
+          <li>
+            <img class="service-img" src="images/12.jpg">
+            <div>
+              <h4>23 Years of Industry Experience</h4>
+              <p>Proven expertise and reliability in the Perth cleaning sector.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="san2-footer">
+          <button class="san2-learn-btn">Learn More</button>
+          <div class="san2-signature">
+            <img src="images/6.jpg" alt="Signature" />
+            <p>Alison Selvister<br><span>CEO & Founder</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+ <!-- end -->
+
+<!-- our client -->
+ <section class="brand-section" id="client">
+      <video autoplay muted loop playsinline class="background-video">
+        <source src="images/7.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="overlay"></div>
+
+      <div class="brand-overlay">
+        <div class="brand-row">
+          <div class="brand-logo">Elizabeth<br>Florist</div>
+          <div class="brand-logo">Wedding<br>Planner</div>
+          <div class="brand-logo">Sweet Angel<br>Wedding Planner</div>
+          <div class="brand-logo">Art Studio<br>by A.Lin</div>
+        </div>
+        <div class="brand-row">
+          <div class="brand-logo">Handmade<br>With Love</div>
+          <div class="brand-logo">Hand<br>Crafted</div>
+          <div class="brand-logo">Pure<br>James Handmade</div>
+          <div class="brand-logo">Wedding<br>Planner</div>
+        </div>
+      </div>
+    </section>
+ <!-- end -->
+  
+<!-- footer -->
+ <footer class="custom-footer">
+    <div class="footer-container">
+
+      <!-- Logo & About -->
+      <div class="footer-box about-box">
+        <span class="star-icon">✦</span> <img src="images/1.jpg" style="width:80px;">
+        <p>
+          Since 2002, we have been the number-one cleaning choice for every industry in Perth.
+          Our cleaning services cover restaurants, schools, and even aged care facilities.
+          With our experience, you can expect quality and reliable cleaning solutions every time.
+        </p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fas fa-times"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-box contact-box">
+        <h3>Contact Information</h3>
+        <ul>
+          <a href="mailto:veditasahu94@gmail.com" class="tonone">
+            <li><i class="fas fa-envelope"></i> veditasahu94@gmail.com</li>
+          </a>
+          <li><i class="fas fa-globe"></i>https://the-grocery-house.netlify.app/</li>
+          <li><i class="fas fa-map-marker-alt"></i> 6 am to 8 pm, 7 days a week</li>
+          <a href="tel:+91 88891 65638" class="tonone">
+            <li><i class="fas fa-phone-alt"></i>+91 88891 65638</li>
+          </a>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      qpscleaning © 2025 All Right Reserved. Website Designed by <a href="https://www.premiumranks.com/" target="_blank"
+        class="premimum"> Premium Ranks</a> INC.
+    </div>
+  </footer>
+
+
+  
+
+   <script src="kks.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

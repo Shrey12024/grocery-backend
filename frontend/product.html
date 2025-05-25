@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grocery Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      height: 100%;
+    }
+    .product-image {
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .product-title {
+      font-weight: 600;
+    }
+    .product-price {
+      color: #007bff;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .btn-cart {
+      background-color: #007bff;
+      color: white;
+      margin-right: 5px;
+    }
+    .btn-buy {
+      background-color: black;
+      color: white;
+    }
+    .wishlist-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: red;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row" id="product-container">
+      <!-- Product cards will be injected here -->
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { title: "Fresh Apples", price: "$2.99", img: "images/1.jpg" },
+      { title: "Whole Wheat Bread", price: "$1.99", img: "images/2.jpg" },
+      { title: "Organic Milk", price: "$3.49", img: "images/3.jpg" },
+      { title: "Brown Rice", price: "$2.49", img: "images/4.jpg" },
+      { title: "Green Tea", price: "$4.00", img: "images/5.jpg" },
+      { title: "Olive Oil", price: "$6.75", img: "images/6.jpg" },
+      { title: "Tomato Ketchup", price: "$2.30", img: "images/11.jpg" },
+      { title: "Peanut Butter", price: "$3.99", img: "images/8.jpg" },
+      { title: "Granola Bars", price: "$5.20", img: "images/9.jpg" },
+      { title: "Frozen Peas", price: "$2.10", img: "images/10.jpg" },
+    ];
+
+    const container = document.getElementById("product-container");
+    container.innerHTML = "";
+
+    products.forEach((product, index) => {
+      const card = document.createElement("div");
+      card.className = "col-12 col-sm-6 col-md-4 col-lg-2 d-flex";
+      card.innerHTML = `
+        <div class="product-card position-relative w-100">
+          <button class="wishlist-btn" onclick="addToWishlist(${index})">❤️</button>
+          <img src="${product.img}" alt="${product.title}" class="product-image w-100" />
+          <div class="product-title">${product.title}</div>
+          <div class="product-price">${product.price}</div>
+          <button class="btn btn-cart" onclick="addToCart(${index})">Add to cart</button>
+          <button class="btn btn-buy" onclick="quickBuy(${index})">Quick Buy</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    function addToCart(index) {
+      alert("Added to cart: " + products[index].title);
+    }
+
+    function addToWishlist(index) {
+      alert("Added to wishlist: " + products[index].title);
+    }
+
+    function quickBuy(index) {
+      alert("Initiating payment for: " + products[index].title);
+    }
+  </script>
+</body>
+</html>

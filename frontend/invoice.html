@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .invoice-box {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .invoice-header img {
+      max-height: 60px;
+    }
+
+    .invoice-title {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #ff416c;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .info-grid div {
+      background: #f7f7f7;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    table th {
+      background: #ff416c;
+      color: #fff;
+      padding: 10px;
+      border: none;
+    }
+
+    table td {
+      padding: 10px;
+      border: 1px solid #eee;
+    }
+
+    .totals {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .totals p {
+      margin: 5px 0;
+    }
+
+    .paid-status {
+      background: #d4edda;
+      color: #155724;
+      padding: 12px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .paid-status .tick {
+      color: green;
+      font-size: 1.3rem;
+      margin-right: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .footer p {
+      margin-bottom: 5px;
+    }
+
+    .thank-you {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .go-home-btn, .btn-print {
+      margin-top: 20px;
+    }
+
+    #product-img {
+      width: 100px;
+      border-radius: 8px;
+    }
+
+    @media print {
+      .go-home-btn, .btn-print {
+        display: none !important;
+      }
+    }
+
+    .btn-secondary {
+      background-color: #fed700;
+      color: black;
+    }
+
+    .no-data-box {
+      max-width: 600px;
+      margin: 100px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-box">
+    <div class="invoice-header">
+      <div>
+        <h2 class="invoice-title">INVOICE</h2>
+        <p><strong>Invoice To:</strong> <span id="user-name">--</span></p>
+        <p><strong>Bill No:</strong> <span id="bill-no">--</span></p>
+        <p><strong>GST No:</strong> 27ABCDE1234F1Z5</p>
+        <p><strong>Support:</strong> +91 98765 43210</p>
+      </div>
+      <img src="images/1.jpg" alt="Logo">
+    </div>
+
+    <div class="info-grid">
+      <div>
+        <strong>Date</strong><br><span id="purchase-date">--</span>
+      </div>
+      <div>
+        <strong>Service No</strong><br><span id="payment-id">--</span>
+      </div>
+      <div>
+        <strong>Account No</strong><br> 0023457789221
+      </div>
+      <div>
+        <strong>Amount</strong><br> ₹<span id="product-price">--</span>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="product-title">--</td>
+          <td><img id="product-img" src="#" alt="Product"></td>
+          <td>₹<span id="price-cell">--</span></td>
+          <td>₹<span id="total-cell">--</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <p>Subtotal: ₹<span id="subtotal">--</span></p>
+      <p>VAT/TAX 15%: ₹<span id="tax">--</span></p>
+      <div class="paid-status mt-3">
+        <span class="tick">✅</span> PAID ₹<span id="total">--</span>
+      </div>
+      <p class="mt-2 text-success"><strong>Due:</strong> ₹0.00</p>
+    </div>
+
+    <div class="footer">
+      <p><strong>Email:</strong> <span id="user-email">--</span></p>
+      <p><strong>Contact:</strong> <span id="user-contact">--</span></p>
+    </div>
+
+    <div class="thank-you">
+      Thank you for your purchase!
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-secondary btn-print" onclick="window.print()">🖨 Print Invoice</button>
+      <a href="index.html" class="btn btn-primary go-home-btn">🏠 Go to Home</a>
+    </div>
+  </div>
+
+  <script>
+    function generateBillNo() {
+      return "INV-" + Math.floor(10000000 + Math.random() * 90000000);
+    }
+
+    const data = JSON.parse(localStorage.getItem("billData"));
+
+    if (data) {
+      document.getElementById("product-img").src = data.img || "#";
+      document.getElementById("product-title").textContent = data.title || "--";
+      document.getElementById("price-cell").textContent = data.price || "0.00";
+      document.getElementById("product-price").textContent = data.price || "0.00";
+      document.getElementById("total-cell").textContent = data.price || "0.00";
+
+      const price = parseFloat(data.price || "0");
+      const tax = (price * 0.15).toFixed(2);
+      const total = (price + parseFloat(tax)).toFixed(2);
+
+      document.getElementById("subtotal").textContent = price.toFixed(2);
+      document.getElementById("tax").textContent = tax;
+      document.getElementById("total").textContent = total;
+
+      document.getElementById("payment-id").textContent = data.paymentId || "--";
+      document.getElementById("user-name").textContent = data.name || "--";
+      document.getElementById("user-email").textContent = data.email || "--";
+      document.getElementById("user-contact").textContent = data.contact || "--";
+      document.getElementById("purchase-date").textContent = data.date || "--";
+      document.getElementById("bill-no").textContent = generateBillNo();
+    } else {
+      document.body.innerHTML = `
+        <div class="no-data-box">
+          <h3>No invoice data found.</h3>
+          <p>Please return to the home page and generate a new invoice.</p>
+          <a href="index.html" class="btn btn-secondary mt-3">🏠 Go Home</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
