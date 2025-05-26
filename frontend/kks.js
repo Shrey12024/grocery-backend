@@ -260,3 +260,32 @@ function searchAction(event) {
 fetch(`${API_URL}/api/products`)
   .then(res => res.json())
   .then(data => console.log(data));
+
+
+  // product.html
+  window.onload = async () => {
+  const res = await fetch(`${BASE_URL}/products`);
+  const products = await res.json();
+  const container = document.getElementById("productContainer");
+
+  products.forEach(product => {
+    container.innerHTML += `
+      <div class="product">
+        <img src="${product.image}" />
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p>₹${product.price}</p>
+        <button onclick="addToCart('${product._id}')">Add to Cart</button>
+      </div>
+    `;
+  });
+};
+
+
+// cart
+function addToCart(id) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push(id);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart");
+}
